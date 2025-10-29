@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.env
+.env.local
+/.cache
+client/node_modules/
+server/node_modules/
+uploads/
+/.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-error.log
+*.log
+
+# Editor folders
+.vscode/
+.idea/
+
+# Test/coverage
+coverage/
+
+# Misc
+logs/
+.env.test
