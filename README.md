@@ -143,7 +143,6 @@ Jashanpreet kaur
 Happy hacking! 🔧🎉
 # Civic-Assist
 
-
 This repository is a starter scaffold for Civic-Assist — a map-based civic issue reporting app.
 
 What I created so far:
@@ -154,31 +153,5 @@ What I created so far:
 - Comment routes: add and list comments for an issue.
 - Minimal React (Vite) client skeleton that calls the backend root endpoint.
 
-Quick start (backend):
 
-1. cd server
-2. npm install
-3. Copy `.env.example` to `.env` and set values (MONGO_URI, JWT_SECRET, etc.)
-4. npm run dev
-
-Quick start (client):
-
-1. cd client
-2. npm install
-3. npm run dev
-
-Requirements coverage:
-
-- Data models: Implemented (User, Issue, Comment) — Done
-- Auth endpoints: /api/auth/register and /api/auth/login — Done
-- Issue endpoints: CRUD, upvote, status update — Done
-- Comment endpoints: add/list — Done
-- Frontend: Minimal skeleton (Vite React) — Done (skeleton)
-
-What's next / suggestions:
-
-- Add image upload (Cloudinary + multer) and a dedicated upload route.
-- Add validation and request sanitization.
-- Add tests and CI.
-- Build map UI with Leaflet or Mapbox and connect issue creation to a location picker.
 
