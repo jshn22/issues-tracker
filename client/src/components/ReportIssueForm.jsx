@@ -108,16 +108,37 @@ const ReportIssueForm = () => {
         address,
       };
 
-      // Location is optional and may be provided by address or server-side geocoding later.
-      if (Array.isArray(coordinates) && coordinates.length === 2) {
+      // If user typed an address but didn't pick a suggestion, attempt forward geocoding
+      // so we can still include coordinates in the payload.
+      if ((!Array.isArray(coordinates) || coordinates.length !== 2) && address && address.length > 3) {
+        try {
+          const q = encodeURIComponent(address);
+          const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&q=${q}`;
+          const resGeo = await fetch(url, { headers: { Accept: 'application/json' } });
+          if (resGeo && resGeo.ok) {
+            const geoData = await resGeo.json();
+            if (Array.isArray(geoData) && geoData.length > 0) {
+              const first = geoData[0];
+              const lon = parseFloat(first.lon);
+              const lat = parseFloat(first.lat);
+              if (Number.isFinite(lon) && Number.isFinite(lat)) {
+                setCoordinates([lon, lat]);
+                payload.coordinates = [lon, lat];
+              }
+            }
+          }
+        } catch (err) {
+          // ignore geocoding errors, server can still accept address-only reports
+        }
+      } else if (Array.isArray(coordinates) && coordinates.length === 2) {
         payload.coordinates = coordinates;
       }
 
       if (uploadedImageUrl) payload.imageUrl = uploadedImageUrl;
 
-  const res = await api.post('/issues', payload);
-  setMessage('Issue reported successfully!');
-  setCreatedIssueId(res.data._id);
+      const res = await api.post('/issues', payload);
+      setMessage('Issue reported successfully!');
+      setCreatedIssueId(res.data._id);
       // Clear form
       setTitle('');
       setDescription('');
