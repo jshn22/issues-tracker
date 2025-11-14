@@ -141,17 +141,17 @@ const ReportIssueForm = () => {
     <form className="report-form" onSubmit={handleSubmit}>
       <div className="card-row">
   <label className="field-label"><span className="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" fill="#1f6fd8"/><path d="M20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#2b79d9"/></svg></span> Title</label>
-        <input className="field-input" placeholder="e.g., Pothole on Main Street" value={title} onChange={(e) => setTitle(e.target.value)} disabled={submitting || imageUploading} />
+        <input className="field-input" placeholder="e.g., Pothole on Main Street" value={title} onChange={(e) => setTitle(e.target.value)} disabled={submitting || imageUploading} required/>
       </div>
 
       <div className="card-row">
   <label className="field-label"><span className="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="14" height="14" rx="2" stroke="#1f6fd8" strokeWidth="1.5" fill="#eaf4ff"/><path d="M7 8h8M7 12h8M7 16h5" stroke="#1f6fd8" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span> Description</label>
-        <textarea className="field-textarea" placeholder="Provide details about the issue..." value={description} onChange={(e) => setDescription(e.target.value)} disabled={submitting || imageUploading} />
+        <textarea className="field-textarea" placeholder="Provide details about the issue..." value={description} onChange={(e) => setDescription(e.target.value)} disabled={submitting || imageUploading} required/>
       </div>
 
       <div className="card-row">
         <label className="field-label"><span className="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.59 13.41L12 21.99 2.41 12.41 11 3l9.59 10.41z" fill="#eaf4ff"/><circle cx="7.5" cy="7.5" r="1.5" fill="#1f6fd8"/></svg></span> Category</label>
-        <select className="field-input" value={category} onChange={(e) => setCategory(e.target.value)} disabled={submitting || imageUploading}>
+        <select className="field-input" value={category} onChange={(e) => setCategory(e.target.value)} disabled={submitting || imageUploading} required>
           <option value="Pothole">Pothole</option>
           <option value="Streetlight">Streetlight</option>
           <option value="Garbage">Garbage</option>
@@ -163,7 +163,7 @@ const ReportIssueForm = () => {
       <div className="card-row">
         <label className="field-label"><span className="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7z" fill="#eaf4ff"/><circle cx="12" cy="9" r="2" fill="#1f6fd8"/></svg></span> Address</label>
         <div className="address-row">
-          <input className="field-input" value={address} onChange={handleAddressChange} disabled={submitting || imageUploading} />
+          <input className="field-input" value={address} onChange={handleAddressChange} disabled={submitting || imageUploading} required/>
           <button type="button" className="btn-outline" onClick={async () => {
             if (!navigator.geolocation) {
               setMessage('Geolocation not supported by your browser');
@@ -207,7 +207,7 @@ const ReportIssueForm = () => {
         <div className="file-row">
           <label className="file-choose btn-primary">
             Choose File
-            <input type="file" onChange={handleImageChange} accept="image/*" disabled={imageUploading || submitting} />
+            <input type="file" onChange={handleImageChange} accept="image/*" disabled={imageUploading || submitting} required/>
           </label>
           <span className="file-name">{image ? image.name : 'No file chosen'}</span>
         </div>
